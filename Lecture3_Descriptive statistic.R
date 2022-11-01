@@ -1,9 +1,9 @@
 #--------------------------------------------------------
-# Biostatistic practical using R Software, Year 4 MBBS (2020)
+# Biostatistic practical using R Software, Year 4 MBBS (2022)
 #--------------------------------------------------------
 # Muhammad Adil ZA
 #--------------------------------------------------------
-# Exploratory data analysis
+# Exploratory data analysis (EDA)
 #--------------------------------------------------------
 
 # “The greatest value of a picture is when it forces us to notice what we never expected to see.” John Tukey
@@ -44,7 +44,7 @@ describeBy(sbp,sex)
 # 2-Way Frequency Table 
 attach(data.sav)
 summary(data.sav$sex)
-tblsex <- table(exercise)
+tblsex <- table(sex)
 prop.table(tblsex)
 tbmic <- table(BMIc)
 prop.table(tbmic)
@@ -54,10 +54,11 @@ mytable <- table(data.sav$sex, data.sav$exercise) # A will be rows, B will be co
 mytable # print table 
 prop.table(mytable)
 prop.table(mytable, 2)
-tblsxhpt <- table(sex,data.sav$hpt)
+#In APA format should be column percentages, percentage of factor according to outcome
+tblsxhpt <- table(data.sav$sex, data.sav$hpt)
 tblsxhpt
 t1 <- prop.table(tblsxhpt, 1)
-round(t1, digits = 2) 
+round(t1, digits = 2) #Round to 2 decimal point
 
 mytable <- table(data.sav$exercise, data.sav$sex) # A will be rows, B will be columns 
 mytable # print table 
@@ -129,10 +130,21 @@ p <- barplot(countsmoking, main="Smoking",
 counts <- table(data.sav$smoking, data.sav$sex)
 barchart1 <- barplot(counts, main="Smoking by gender",
         xlab="Gender of participants", col=c("Turquoise","brown"),
-        legend = rownames(counts), theme(text = element_text(size=20)))
+        legend = rownames(counts), beside=TRUE)
+
+counts <- table(mtcars$vs, mtcars$gear)
+barplot(counts, main="Car Distribution by Gears and VS",
+        xlab="Number of Gears", col=c("darkblue","red"),
+        legend = rownames(counts), beside=TRUE)
 
 #piechart
 library(ggplot2)
+
+slices <- c(70, 83)
+lbls <- c("Female", "Male")
+pie(slices, labels = lbls, main="Gender")
+
+
 df = data.frame("sex" = c("Female","Male"),
                 "percentage" = c(.46,.54))
 pie = ggplot(df, aes(x="", y=percentage, fill=sex)) + geom_bar(stat="identity", width=1)
@@ -144,6 +156,7 @@ pie = pie + theme_classic() + theme(axis.line = element_blank(),
                                     axis.ticks = element_blank(),
                                     plot.title = element_text(hjust = 0.5, color = "#666666"))
 pie
+
 #example2
 df = data.frame("exercise" = c("Low","Moderate","High"),
                 "percentage" = c(.40,.40,.20))
@@ -185,7 +198,7 @@ ggplot(datas, aes(x=sex, y=age, colour=exercise)) +
   geom_errorbar(aes(ymin=age-sd, ymax=age+sd), width=.1) +
   geom_line() +
   geom_point()
-pd <- position_dodge(0.1)
+pd <- position_dodge(0.3)
 ggplot(datas, aes(x=sex, y=age, colour=exercise)) + 
   geom_errorbar(aes(ymin=age-ci, ymax=age+ci), width=.1, position=pd) +
   geom_line(position=pd) +

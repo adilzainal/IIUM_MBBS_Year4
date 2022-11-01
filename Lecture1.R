@@ -1,5 +1,5 @@
 #--------------------------------------------------------
-# Biostatistic practical using R Software, Year 4 MBBS (2020)
+# Biostatistic practical using R Software, Year 4 MBBS (2022)
 #--------------------------------------------------------
 # Muhammad Adil ZA 
 #--------------------------------------------------------
@@ -31,7 +31,7 @@
 
 # RStudio Interface
 
-## The windows arrangement
+## The window pane arrangement
 # 1. Script (Command, run, save script)
 # 2. Console (Result of command, clear, terminal system shell, output)
 # 3. Environment & History (Object, previous command, )
@@ -39,7 +39,7 @@
 
 # - Open a new R script
 #   - type all commands/functions here
-#   - comments, start with "#"
+#   - comments or for notes start with "#"
 #   - run all commands by Ctrl+Enter or click run
 
 ## Tasks 
@@ -76,7 +76,8 @@ x <- 1
 y = 2
 z = x + y
 z  # type object name, you'll get the value
-300/24
+#Exercise 1 try to calculate 300/25
+300/25
 
 # Read data
 
@@ -89,19 +90,12 @@ sleep  # view data
 # Always make sure that you set the working directory first!
 install.packages("foreign") # one of the method to install a package, another one method is by go to the package tab
 library(foreign)  # library to read .sav (SPSS) and .dta (STATA) files
-testdata = read.spss("healthstatus.sav") 
 data.sav = read.spss("healthstatus.sav")  # most natural way to open data in R
-data.sav = read.spss("healthstatus.sav", to.data.frame = TRUE)  # read SPSS dataset
 data.sav = read.spss("healthstatus.sav", to.data.frame = TRUE)  # read SPSS dataset
 data.dta = read.dta("cholest.dta")  # How to read STATA dataset
 install.packages("readxl")
-library(readxl)
 library(readxl)  # library to read excel files, must install first
 datatest = read_excel("comsurvey.xlsx", sheet = 1)
-testing1 = read_excel("Book1.xlsx", sheet = 1)
-csdata = read_excel("cs.xlsx", sheet = 1)
-comsurvey = read_excel("comsurvey.xlsx", sheet = 1)
-comsurvey2 <- read_excel("comsurvey2.xlsx", sheet =1)
 
 # Handle data 
 
@@ -112,21 +106,10 @@ str(data)
 dim(data.sav)  # Dimension (row/case column/variable)
 names(data.sav)  # Variable names
 str(data.sav$smoking)
-data.sav$sex3 <- as.factor(data.sav$sex)
-datacomsurvey$sex5 <- as.factor(datacomsurvey$sex)
+data.sav$sex3 <- as.factor(data.sav$sex) # set a factor variable
 str(datacomsurvey)
-data.sav$age <- as.numeric(data.sav$age)
-data.sav$sex2 <- as.factor(data.sav$sex)
-data.sav$sex2 <- as.factor(data.sav$sex2)
-data.sav$sex2 <- as.numeric(data.sav$sex)
-data.sav$id <- as.numeric(data.sav$id)
-data.sav$sex2 <- as.factor(data.sav$sex2)
-data.sav$sex3 <- factor(data.sav$sex2, levels = c("Female","Male"), labels = c("Yes","No"))
+data.sav$age <- as.numeric(data.sav$age) #set a numerical variable
 data.sav$ethnicity <- factor(data.sav$ethnicity, levels = c("Low","Moderate","High"), labels = c("L","M","H"))
-comsurvey$ethnic2 <- as.factor(comsurvey$ethnic)
-comsurvey$ethnic2 <- factor(comsurvey$ethnic2, levels = c("1","2","3"), labels = c("Malay","Chinese","Indian"))
-data.sav$sex2 <- factor(data.sav$sex, levels = c("Female", "Male"), labels = c("2","1"))
-data.sav$sex2 <- factor(data.sav$sex2, levels = c("1", "2"), labels = c("female","male"))
 data.sav$totalwt <- data.sav$wt + data.sav$wt2
 
 ## View data
@@ -155,11 +138,9 @@ data_cat = factor( c("M", "F", "M", "F", "M") ); str(data_cat)
 library(writexl)
 dat <- data.sav
 write_xlsx(dat, "data.xlsx")
-write_xlsx(comsurvey, "comsurvey.xlsx")
 
 dat = read_excel("data.xlsx", sheet = 1)
 
-write_xlsx(data.sav, "databaru.xlsx")
 write_sav(data.sav,"healthstatusedited0822.sav")
 data1.sav = read.spss("dataedited.sav", to.data.frame = TRUE)
 

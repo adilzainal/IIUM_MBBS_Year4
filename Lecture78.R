@@ -1,3 +1,10 @@
+#--------------------------------------------------------
+# Biostatistic workshop using R Software (2022)
+#--------------------------------------------------------
+# Muhammad Adil ZA
+#--------------------------------------------------------
+# Bivariate data analysis continued
+#--------------------------------------------------------
 #ANOVA
 #Non parametric test (mann whitney, kruskall wallis, wilcoxon)
 
@@ -72,3 +79,4 @@ ggboxplot(data.sav, x = "exercise", y = "sbp",
 summary(data.sav$wt)
 summary(data.sav$wt2)
 wilcox.test(data.sav$wt, data.sav$wt2, paired=TRUE) 
+
