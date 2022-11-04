@@ -46,6 +46,7 @@ attach(data.sav)
 summary(data.sav$sex)
 tblsex <- table(sex)
 prop.table(tblsex)
+summary(BMIc)
 tbmic <- table(BMIc)
 prop.table(tbmic)
 
@@ -53,7 +54,7 @@ summary(data.sav$age)
 mytable <- table(data.sav$sex, data.sav$exercise) # A will be rows, B will be columns 
 mytable # print table 
 prop.table(mytable)
-prop.table(mytable, 2)
+prop.table(mytable, 2) # 1 for row, 2 for column percentages
 #In APA format should be column percentages, percentage of factor according to outcome
 tblsxhpt <- table(data.sav$sex, data.sav$hpt)
 tblsxhpt
@@ -114,7 +115,7 @@ kurtosis(age)
 library(ggplot2)
 #barchart
 counts <- table(data.sav$sex)
-barplot(counts, 
+barplot(counts,
         main="GENDER OF RESPONDENT",
         xlab="Gender")
 

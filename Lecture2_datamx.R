@@ -12,7 +12,7 @@ library(foreign)  # library to read .sav (SPSS) and .dta (STATA) files
 data.sav = read.spss("healthstatus.sav", to.data.frame = TRUE)  #SPSS
 
 #make a bmi or composite variable bmi before intervention
-data.sav$BMI <- (data.sav$wt)/ (((data.sav$ht)/100)^2)
+data.sav$BMI <- (data.sav$wt) / (((data.sav$ht)/100)^2)
 #Exercise 2 try to make BMI after intervention 
 
 #Example for your research
@@ -49,10 +49,11 @@ attach(data.sav)
 data.sav$hpt<-(sbp>=140|dbp>=90)
 data.sav$hpt <- as.factor(data.sav$hpt)
 summary(data.sav$hpt)
+data.sav$hpt <- factor(data.sav$hpt, levels = c("FALSE","TRUE"),labels = c("normotensive", "hypertensive"))
 
 #Round the decimal point
 summary(data.sav$BMIcategory)
-data.sav$BMI <- round(data.sav$BMI,2)
+data.sav$BMIa <- round(data.sav$BMIa,2)
 
 #Example in your research
 csdata = read_excel("cs.xlsx", sheet = 1)

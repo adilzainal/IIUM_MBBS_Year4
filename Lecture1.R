@@ -49,7 +49,7 @@
 install.packages("psych") # this command is to download
 install.packages("car") # install car package from cran repository
 library(psych)
-library(car)
+library(car) # this command to install car package
 install.packages("readxl")
 library(readxl)
 library(apaTables)
@@ -76,6 +76,7 @@ x <- 1
 y = 2
 z = x + y
 z  # type object name, you'll get the value
+z + y
 #Exercise 1 try to calculate 300/25
 300/25
 
@@ -106,12 +107,13 @@ str(data)
 dim(data.sav)  # Dimension (row/case column/variable)
 names(data.sav)  # Variable names
 str(data.sav$smoking)
-data.sav$sex3 <- as.factor(data.sav$sex) # set a factor variable
+data.sav$sex <- as.factor(data.sav$sex) # set a factor variable
 str(datacomsurvey)
 data.sav$age <- as.numeric(data.sav$age) #set a numerical variable
 data.sav$ethnicity <- factor(data.sav$ethnicity, levels = c("Low","Moderate","High"), labels = c("L","M","H"))
 data.sav$totalwt <- data.sav$wt + data.sav$wt2
-
+data.sav$wtdiff <- data.sav$wt2 - data.sav$wt
+datatest$wtdiff <- datatest$wt2 - datatest$wt
 ## View data
 head(data.sav)  # View data, first 6 rows
 tail(data.sav)  # View data, last 6 rows
@@ -137,7 +139,7 @@ data_cat = factor( c("M", "F", "M", "F", "M") ); str(data_cat)
 
 library(writexl)
 dat <- data.sav
-write_xlsx(dat, "data.xlsx")
+write_xlsx(data.sav, "dataedited.xlsx")
 
 dat = read_excel("data.xlsx", sheet = 1)
 

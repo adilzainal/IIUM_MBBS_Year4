@@ -1,5 +1,5 @@
 #--------------------------------------------------------
-# Biostatistic workshop using R Software (2022)
+# Biostatistic practical using R Software (2022)
 #--------------------------------------------------------
 # Muhammad Adil ZA
 #--------------------------------------------------------
@@ -27,10 +27,10 @@ prop.table(tbl2,1)
 chisq.test(tbl2) 
 
 #yates correction for correction works when at least one of the cell have less than 5 
-tbl3 = table(data.sav$sex, data.sav$smoking)
-tbl3
-prop.table(tbl3, 1)
-chisq.test(tbl3)
+t3 = table(data.sav$sex, data.sav$smoking)
+t3
+prop.table(t3, 1)
+chisq.test(t3)
 
 #fisher exact test when small sample size (when more than 20% of cells have exp frequencies less than 5)
 fisher.test(data.sav$sex,data.sav$smoking)
@@ -47,7 +47,7 @@ plot(data.sav$sbp, data.sav$dbp, main="Scatterplot Example",
      xlab="SBP ", ylab="DBP ", pch=19)
 
 # Add fit lines
-abline(lm(data.sav$wt~data.sav$ht), col="red") # regression line (y~x) 
+abline(lm(data.sav$hcy~data.sav$wt), col="red") # regression line (y~x) 
 lines(lowess(data.sav$wt,data.sav$ht), col="blue") # lowess line (x,y)
 
 
@@ -65,21 +65,21 @@ library(ggplot2)
 library(car)
 library(psych)
 describeBy(data.sav$sbp, data.sav$sex)
-describeBy(data.sav$dbp, data.sav$sex)
-leveneTest(data = data.sav, sbp ~ sex) # another assumption for in t test, must have equal variance, homoscedasticity
+describeBy(data.sav$BMI, data.sav$smoking)
+leveneTest(data = data.sav, BMI ~ smoking) # another assumption for in t test, must have equal variance, homoscedasticity
                                     # null hypothesis, no variance diff btw male and female 
                        # p value not sig, do not reject null, no variance diff
 t.test(data = data.sav, sbp ~ sex)
 
 t.test(data = data.sav, sbp ~ sex, var.equal=TRUE)
-t.test(data = data.sav, sbp ~ sex, var.equal=FALSE)
+t.test(data = data.sav, BMI ~ smoking, var.equal=FALSE)
 
 #pair t-test
 describe(data.sav$wt)
 sd(data.sav$wt)
 describe(data.sav$wt2)
 sd(wt2)
-t.test(data.sav$wt,data.sav$wt2,paired = TRUE) # p value sig, reject null, there is sig diff of wt before and after 
+t.test(wt,wt2,paired = TRUE) # p value sig, reject null, there is sig diff of wt before and after 
 
 attach(data.sav)
 describe(data.sav$BMI)
